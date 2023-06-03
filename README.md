@@ -1,2 +1,2 @@
 # DSA
-Contains commonly used datastructures and algorithms.
+- Contains commonly used datastructures and algorithms.

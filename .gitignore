@@ -1,0 +1,17 @@
+# ignore all .out files
+*.out
+
+# but do track lib.out, even though you're ignoring .out files above
+!lib.out
+
+# only ignore the TODO file in the current directory, not subdir/TODO
+/TODO
+
+# ignore all files in any directory named build
+build/
+
+# ignore doc/notes.txt, but not doc/server/arch.txt
+doc/*.txt
+
+# ignore all .pdf files in the doc/ directory and any of its subdirectories
+doc/**/*.pdf
