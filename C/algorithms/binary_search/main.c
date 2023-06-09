@@ -9,7 +9,7 @@ int main(void) {
     for (int i = 0; i < 8; i++)
         ar[i] = i + 1;
 
-    binary_search(ar, 7, 9, 0);
+    binary_search(ar, 7, 7, 0);
 
     return 0;
 }
@@ -30,5 +30,6 @@ void binary_search(int ar[], int n, int x, int start) {
             binary_search(ar, mid, x, start);
     }
 
-    printf("Element not found\n");
+    else
+        printf("Couldn't find the element!!\n");
 }
