@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void linear_search(int [], int, int);
+void linear_search(const int ar[], int n, int x);
 
 int main() {
 
@@ -12,11 +12,11 @@ int main() {
     linear_search(ar, 10, x);
 }
 
-void linear_search(int ar[], int n, int x) {
+void linear_search(const int ar[], int n, int x) {
 
     for (int i = 0; i < n; i++) {
         if (x == ar[i]) {
-            printf("Found the element!!\n");
+            printf("Found the element %d at position %d!!\n", x, i);
             return;
         }
     }
