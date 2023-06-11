@@ -10,7 +10,7 @@ struct node {
 
 int main() {
 
-    int i, N = 5, M = 2;
+    int i, N = 5, M = 3;
 
     link t = malloc(sizeof *t), x = t;
 

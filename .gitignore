@@ -1,8 +1,8 @@
-# ignore all .out files
+# ignore all .o files
 *.o
 
 # but do track lib.out, even though you're ignoring .out files above
-!lib.out
+# !lib.o
 
 # only ignore the TODO file in the current directory, not subdir/TODO
 /TODO
