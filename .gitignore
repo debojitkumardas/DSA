@@ -1,5 +1,5 @@
 # ignore all .out files
-*.out
+*.o
 
 # but do track lib.out, even though you're ignoring .out files above
 !lib.out
