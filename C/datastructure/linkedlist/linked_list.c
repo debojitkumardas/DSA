@@ -1,50 +1,68 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "linked_list.h"
 
-// self referential structure
-struct node {
-    int item;  // each node contains an integer
-    struct node* link;  // pointer to the next node
-};  // end structure node
+node* insert_at_head(node* ptr, int val) {
 
-typedef struct node node;
+    node* new_node = malloc(sizeof(node));
+    node* curr_head = ptr;
 
-// function prototypes
-void insert (node* ptr, int val);  // insert value at the end of list
-char delete (node* ptr, int pos);  // delete value at any position in list
-int is_empty (node* ptr);  // check if list is empty
-void print_list (node* ptr);  // print list
-void instructions (void);  // has instructions on insetion, deletion of list elements
+    if (new_node != NULL) {
+        new_node->item = val;
+        new_node->link = curr_head;
+        ptr = new_node;  // head points to the new node
+    }
+
+    free(curr_head);
+
+    return ptr;
+}
+
+void print_list(node *ptr) {
+
+    node* temp = ptr;
+    while (temp != NULL) {
+        printf("%d\n", temp->item);
+        temp = temp->link;
+    }
+
+    free(temp);
+}
+
+void delete_list_from_head(node *ptr) {
+
+    node* temp = NULL;
+
+    while (ptr != NULL) {
+        temp = ptr;
+        ptr = ptr->link;
+        free(temp);
+    }
+}
 
 int main (void) {
 
     node* head = NULL;  // initially there are no nodes
-    int choice, value, position;  // users choice, value and position
+    int value = 6;  // users choice, value and position
 
-    instructions();
-    printf("? ");
-    scanf("%d", &choice);
+    node* first = malloc(sizeof(node));
 
-    // while user doesn't choose 3
-    while (choice != 3) {
+    first->item = 5;
+    first->link = NULL;
+    head = first;
 
-        switch (choice) {
-            case 1:
-                printf("enter a value: ");
-                scanf("%d", &value);
-                insert(head, value);
-                print_list(head);
-                break;
-            case 2:
-                // if list is not empty
-                if (!is_empty(head)) {
-                    printf("enter the postion of the element to be deleted: ");
-                    scanf("%d", &position);
-                }
-        }
-    }
+    printf("Hello.\n");
+
+    print_list(head);
+
+    head = insert_at_head(head, value);
+
+    print_list(head);
+
+    delete_list_from_head(head);
+
+    return 0;
 }
-
 
 
 /*
