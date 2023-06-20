@@ -97,14 +97,14 @@ void print_list(node* head) {
     }
 }
 
-// list of operations that the code can perform
+// list of available operations
 void instructions() {
 
     printf(
-           "1. Press 1 to enter element at the head of the list. \n"
-           "2. Press 2 to enter element at the tail of the list. \n"
-           "3. Press 3 to delete element from the head of the list. \n"
-           "4. Press 4 to delete element from the tail of the list. \n"
+           "1. Press 1 to enter element at head of list. \n"
+           "2. Press 2 to enter element at tail of list. \n"
+           "3. Press 3 to delete element from head of list. \n"
+           "4. Press 4 to delete element from tail of list. \n"
            "*. Press 0 to exit. \n"
            );
 }
