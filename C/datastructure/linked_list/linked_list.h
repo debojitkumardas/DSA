@@ -1,3 +1,6 @@
+#ifndef LINKED_LIST
+#define LINKED_LIST
+
 typedef struct node node;
 
 // self referential structure
@@ -15,3 +18,5 @@ int is_empty (node* head);  // check if list is empty
 void print_list (node* head);  // print list
 void instructions ();  // has instructions on insetion, deletion of list elements
 void delete_list_on_exit(node* head);  // after doing all required operations delete list
+
+#endif // !LINKED_LIST
