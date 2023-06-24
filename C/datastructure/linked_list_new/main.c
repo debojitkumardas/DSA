@@ -12,15 +12,18 @@ int main(void) {
     instructions();
     while (choice != 0) {
 
-        printf("Enter the choice (insert/remove): ");
+        printf("Enter the choice (insert/remove/exit): ");
         scanf("%d", &choice);
 
-        printf("Enter choice (head/tail): ");
-        scanf(" %c", &ch);
+        if (choice != 0) {
+            printf("Enter choice (head/tail): ");
+            scanf(" %c", &ch);
+        }
 
         switch (choice) {
             case 0:
-                delete_list_on_exiting(&head);
+                if (!is_empty(head))
+                    delete_list_on_exiting(&head);
                 break;
             case 1:
                 printf("Enter data: ");

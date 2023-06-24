@@ -1,16 +1,20 @@
+#ifndef STACK_H
+#define STACK_H
+
 typedef struct node node;
 
-// self referential structure
 struct node {
     int data;
-    node* link;
+    node *link;
 };
 
 // function prototypes
-// stack operations: push, pop, isempty
-node* push(node* head, int value);  // insert value at head of list
-node* pop(node* head);  // remove value from head of list
-int is_empty(node* head);  // check if list is empty
-void print_stack(node* head);  // display elements of stack
-void instructions();  // list available operations on stack
-void delete_stack_on_exit(node* head);  // delete stack after performing relevant operations
+// operations to perform on stack
+void push_element(node **head, int value);
+void pop_element(node **head);
+int is_empty(node *head);
+void print_stack_elements(node *head);
+void stack_instructions();
+void delete_stack(node **head);
+
+#endif // !STACK_H

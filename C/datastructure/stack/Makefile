@@ -1,8 +1,8 @@
-stack: stack.o
-	gcc -g stack.o -o stack
+main: main.o stack.o
+	gcc -g main.o stack.o -o main
 
-stack.o: stack.c
-	gcc -g -c stack.c -o stack.o
+main.o: main.c stack.c
+	gcc -c -g main.c stack.c -o main.o stack.o
 
 clean:
 	rm -rf *.o
