@@ -8,9 +8,9 @@ int main(void) {
     int choice = 1;
 
     stack_instructions();
-    while (choice == 1) {
+    while (choice != 0) {
 
-        printf("Enter your choice (push/pop): ");
+        printf("Enter your choice (push/pop/exit): ");
         scanf("%d", &choice);
 
         switch (choice) {
@@ -27,6 +27,8 @@ int main(void) {
                 pop_element(&head);
                 break;
         }
+
+        print_stack_elements(head);
     }
 
     return 0;

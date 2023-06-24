@@ -10,19 +10,40 @@ void push_element(node **head, int value) {
         new_node->data = value;
         if (is_empty(*head))
             new_node->link = NULL;
-    }
+        else
+            new_node->link = *head;
 
-    insert_element(head, NULL, value, 'H');
+        *head = new_node;
+    }
 }
 
 void pop_element(node **head) {
 
-    remove_element(head, NULL, 'H');
+    if (!is_empty(*head)) {
+        node *temp = *head;
+        *head = (*head)->link;
+        free(temp);
+    }
+    else
+        printf("Stack is empty!! Nothing to pop.\n");
+}
+
+int is_empty(node *head) {
+
+    if (head == NULL)
+        return 1;
+    else
+        return 0;
 }
 
 void print_stack_elements(node *head) {
 
-    print_list(head);
+    while (head != NULL) {
+        printf("%d->", head->data);
+        head = head->link;
+    }
+
+    printf("\\0\n");
 }
 
 void stack_instructions() {
@@ -36,5 +57,9 @@ void stack_instructions() {
 
 void delete_stack(node **head) {
 
-    delete_list_on_exiting(head);
+    while (*head != NULL) {
+        node *temp = *head;
+        *head = (*head)->link;
+        free(temp);
+    }
 }
