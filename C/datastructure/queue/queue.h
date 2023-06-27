@@ -1,3 +1,6 @@
+#ifndef QUEUE_H
+#define QUEUE_H
+
 typedef struct node node;
 
 // self referential structure
@@ -8,8 +11,11 @@ struct node {
 
 // function prototypes
 // list of queue operations
-node* enqueue(node* tail, int value);  //
-node* dequeue(node* head);
-int is_empty(node* head);
-void print_queue(node* head);
+void enqueue(node **head, node **tail, int value);  //
+void dequeue(node **head, node **tail);
+int is_empty(node *head);
+void print_queue(node *head);
 void instructions();
+void delete_queue(node **head, node **tail);
+
+#endif // !QUEUE_H

@@ -1,54 +1,57 @@
+#include "queue.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "queue.h"
 
 // insert element in queue
-node* enqueue(node* tail, int value) {
+void enqueue(node **head, node **tail, int value) {
 
     node* new_node = malloc(sizeof(node));  // create a new_node
 
     if (new_node != NULL) {
         new_node->data = value;  // insert data into node
         new_node->link = NULL;  // link of last node is NULL
-        if (tail != NULL)  // if list is not empty
-            tail->link = new_node;  // point previous last node to new_node
-        tail = new_node;  // point tail to new last node
+        if (is_empty(*head))
+            *head = new_node;
+        else
+            (*tail)->link = new_node;
+        *tail = new_node;
     }
-
-    return tail;  // return link to new tail
 }
 
-// delete element from queue
-node* dequeue(node* head) {
+// remove element from queue
+void dequeue(node **head, node **tail) {
 
     // if queue is not empty
-    if (is_empty(head) != -1) {
-        node* temp = head;
-        head = head->link;
+    if (!is_empty(*head)) {
+        node* temp = *head;
+        *head = (*head)->link;
         free(temp);
     }
     else  // if queue is empty
-        printf("List is empty!! Nothing to delete.\n");
+        printf("Queue is empty!! Nothing to remove.\n");
 
-    return head;
+    if (is_empty(*head))
+        *tail = NULL;
 }
 
 // check if queue is empty
-int is_empty(node* head) {
+int is_empty(node *head) {
 
     if (head == NULL)
-        return -1;
-    else
         return 1;
+    else
+        return 0;
 }
 
 // print queue
 void print_queue(node *head) {
 
     while (head != NULL) {
-        printf("%d\n", head->data);
+        printf("%d->", head->data);
         head = head->link;
     }
+
+    printf("\\0\n");
 }
 
 // list of operations on queue
@@ -61,49 +64,15 @@ void instructions() {
     );
 }
 
-// the main function
-int main(void) {
+// delete nodes, if any, after operations
+void delete_queue(node **head, node **tail) {
 
-    node* head = NULL;  // initially the list is empty
-    node* tail = NULL;  // initially the list is empty
-
-    int value = 0;
-    int choice = 1;
-    int count = 0;
-
-    instructions();
-    while (choice != 0) {
-
-        printf("Enter the choice: ");
-        scanf("%d", &choice);
-
-        //
-        if (choice == 1) {
-            printf("Enter the value: ");
-            scanf("%d", &value);
-            count++;
-        }
-
-        //
-        if (choice == 2) {
-            if (is_empty(head) != -1)
-                count--;
-        }
-
-        switch (choice) {
-            case 0:
-                break;
-            case 1:
-                tail = enqueue(tail, value);
-                break;
-            case 2:
-                tail = enqueue(tail, value);
-                break;
-            default:
-                printf("Please enter the valid choice.\n");
-                break;
-        }
+    while (*head != NULL) {
+        node *temp = *head;
+        *head = (*head)->link;
+        free(temp);
     }
 
-    return 0;
+    if (is_empty(*head))
+        *tail = NULL;
 }
