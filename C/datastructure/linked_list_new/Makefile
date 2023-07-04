@@ -1,11 +1,22 @@
-main: main.o linked_list.o
-	gcc -g main.o linked_list.o -o main
+SRCDIR=.
+HDRDIR=.
+BIN=main
 
-main.o: main.c
-	gcc -g -c main.c -o main.o
+CC=gcc
+DEPFLAGS=-MP -MD
+CFLAGS=-Wall -Wextra -g $(foreach D, $(HDRDIR), -I$(D)) $(DEPFLAGS)
 
-linked_list.o: linked_list.c
-	gcc -g -c linked_list.c -o linked_list.o
+SRC=$(foreach D, $(SRCDIR), $(wildcard $(D)/*.c))
+OBJ=$(patsubst %.c, %.o, $(SRC))
+HDR=$(patsubst %.c, %.d, $(SRC))
+
+all: $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) -o $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -rf *.o
+	rm -rf $(BIN) $(OBJ) $(HDR)
