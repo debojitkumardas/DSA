@@ -2,33 +2,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void insert_node(node **ptr, int value, char opt) {
+// insert node in tree
+void insert_node(node **root, int value, char opt) {
 
-    if (*ptr == NULL) {
-        *ptr = malloc(sizeof(node));
+    // if tree is empty
+    if (*root == NULL) {
+        *root = malloc(sizeof(node));  // create an empty node
 
-        if (*ptr != NULL) {
-            (*ptr)->data = value;
-            (*ptr)->left = NULL;
-            (*ptr)->right = NULL;
+        // node created successfully
+        if (*root != NULL) {
+            (*root)->data = value;  // assign value to node
+            (*root)->left = NULL;
+            (*root)->right = NULL;
         }
         else
             printf("%d not inserted. No memory available.\n", value);
     }
+    // if tree has node(s)
     else {
+        printf("The current root node of the subtree is: %d\n", (*root)->data);
+        printf("Which subtree do you want your value to be in (l/r)? ");
+        get_val("%c", &opt);
         if (opt == 'L' || opt == 'l')
-            insert_node(&((*ptr)->left), value, opt);
+            insert_node(&((*root)->left), value, opt);
         else if (opt == 'R' || opt == 'r')
-            insert_node(&((*ptr)->right), value, opt);
+            insert_node(&((*root)->right), value, opt);
     }
 }
 
-void inorder(node *ptr) {
+void inorder(node *root) {
 
-    if (ptr != NULL) {
-        inorder(ptr->left);
-        printf("%d->", ptr->data);
-        inorder(ptr->right);
+    if (root != NULL) {
+        inorder(root->left);
+        printf("%d->", root->data);
+        inorder(root->right);
     }
     else
         printf("\\0\n");
@@ -43,4 +50,11 @@ void instructions() {
         "4. Press 4 to traverse the tree postorder.\n"
         "*. Press 0 to exit.\n"
     );
+}
+
+// the issue with scanf is that it leaves a newline in the buffer which interupts with the following scanf
+// for that purpose get_val is created where the getchar after the scanf takes care of the trailing newline
+void get_val(char ch[], void *ptr) {
+    scanf(ch, ptr);
+    getchar();
 }

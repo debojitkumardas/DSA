@@ -14,18 +14,15 @@ int main() {
     option = 'r';
     while (choice != 0) {
         printf("Enter your choice: ");
-        scanf("%d", &choice);
+        get_val("%d", &choice);
 
         switch (choice) {
             case 0:
                 printf("Exiting!!\n");
-                exit(1);
                 break;
             case 1:
                 printf("Enter value for node: ");
-                scanf("%d", &value);
-                // printf("Enter choice for the subtree <l: left, r: right>: ");
-                // scanf("%c", &option);
+                get_val("%d", &value);
                 insert_node(&root, value, option);
                 break;
             case 2:
