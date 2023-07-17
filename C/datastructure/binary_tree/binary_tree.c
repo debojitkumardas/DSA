@@ -12,8 +12,8 @@ void insert_node(node **root, int value, char opt) {
         // node created successfully
         if (*root != NULL) {
             (*root)->data = value;  // assign value to node
-            (*root)->left = NULL;
-            (*root)->right = NULL;
+            (*root)->left = NULL;  // left subtree as NULL
+            (*root)->right = NULL;  // right subtree as NULL
         }
         else
             printf("%d not inserted. No memory available.\n", value);
@@ -21,7 +21,7 @@ void insert_node(node **root, int value, char opt) {
     // if tree has node(s)
     else {
         printf("The current root node of the subtree is: %d\n", (*root)->data);
-        printf("Which subtree do you want your value to be in (l/r)? ");
+        printf("Which branch of the subtree do you want your value to be in (l/r)? ");
         get_val("%c", &opt);
         if (opt == 'L' || opt == 'l')
             insert_node(&((*root)->left), value, opt);
@@ -36,6 +36,28 @@ void inorder(node *root) {
         inorder(root->left);
         printf("%d->", root->data);
         inorder(root->right);
+    }
+    else
+        printf("\\0\n");
+}
+
+void preorder(node *root) {
+
+    if (root != NULL) {
+        printf("%d->", root->data);
+        preorder(root->left);
+        preorder(root->right);
+    }
+    else
+        printf("\\0\n");
+}
+
+void postorder(node *root) {
+
+    if (root != NULL) {
+        postorder(root->left);
+        postorder(root->right);
+        printf("%d->", root->data);
     }
     else
         printf("\\0\n");

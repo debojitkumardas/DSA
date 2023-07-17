@@ -29,6 +29,15 @@ int main() {
                 printf("Traversing the tree inorder!!\n");
                 inorder(root);
                 break;
+            case 3:
+                printf("Traversing the tree preorder!!\n");
+                preorder(root);
+                break;
+            case 4:
+                printf("Traversing the tree postorder!!\n");
+                postorder(root);
+                printf("\n");
+                break;
             default:
                 printf("Enter a valid choice!!\n");
                 break;
