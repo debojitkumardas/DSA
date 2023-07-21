@@ -4,6 +4,9 @@
 # ignore all .o files
 *.d
 
+# ignore all files in any directory named .cache
+.cache/
+
 # but do track lib.out, even though you're ignoring .out files above
 # !lib.o
 
