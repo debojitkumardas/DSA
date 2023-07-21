@@ -66,8 +66,9 @@ void print_hash_table(hash_table *ptr) {
     for (int i = 0; i < TABLE_SIZE; ++i) {
         node *temp = ptr->table_list[i];
         while (temp != NULL) {
-            printf("key: %d \t value: %s\n", temp->num, temp->name);
+            printf("[%d, %s] - ", temp->num, temp->name);
             temp = temp->next;
         }
+        printf("\\0\n");
     }
 }
