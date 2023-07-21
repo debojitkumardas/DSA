@@ -24,14 +24,45 @@ void insert_at_tail(node **head, node **tail, int num, char *name) {
 
     if (new_node != NULL) {
         new_node->num = num;
-
         func(new_node->name, name);
+        new_node->next = NULL;
 
         if (list_is_empty(*head))
             *head = new_node;
         else
             (*tail)->next = new_node;
         *tail = new_node;
+    }
+}
+
+void remove_element(node **head, node **tail, int num) {
+    if (!list_is_empty(*head)) {
+        node *temp = *head;
+        node *h_ptr = NULL;
+        // if element if at head
+        if (temp->num == num) {
+            *head = temp->next;
+            free(temp);
+        }
+        else {
+            while (temp != NULL) {
+                h_ptr = temp->next;
+                if (h_ptr->num == num) {
+                    // if element is at tail
+                    if (h_ptr->next == NULL) {
+                        temp->next = NULL;
+                        *tail = temp;
+                        free(h_ptr);
+                    }
+                    else {
+                        temp->next = h_ptr->next;
+                        free(h_ptr);
+                        break;
+                    }
+                }
+                temp = temp->next;
+            }
+        }
     }
 }
 
@@ -61,6 +92,29 @@ void insert_data(hash_table *table_list_head, hash_table *table_list_tail, int k
         insert_at_tail(&(table_list_head->table_list[hash_key]), &(table_list_tail->table_list[hash_key]), key, value);
 }
 
+void remove_data(hash_table *table_list_head, hash_table *table_list_tail, int key) {
+    int hash_key = hash_func(key);
+
+    remove_element(&(table_list_head->table_list[hash_key]), &(table_list_tail->table_list[hash_key]), key);
+}
+
+void search_data(hash_table *table_list_head, int key) {
+    int hash_key = hash_func(key);
+    bool_ is_found = FALSE;
+
+    node *temp = table_list_head->table_list[hash_key];
+    while (temp != NULL) {
+        if (temp->num == key) {
+            is_found = TRUE;
+            printf("Found key: %d, value is: %s\n", temp->num, temp->name);
+        }
+        temp = temp->next;
+    }
+
+    if (!is_found)
+        printf("Key not found.\n");
+}
+
 void print_hash_table(hash_table *ptr) {
 
     for (int i = 0; i < TABLE_SIZE; ++i) {
@@ -70,5 +124,17 @@ void print_hash_table(hash_table *ptr) {
             temp = temp->next;
         }
         printf("\\0\n");
+    }
+}
+
+void delete_table(hash_table *ptr) {
+
+    for (int i = 0; i < TABLE_SIZE; ++i) {
+        node **temp = &(ptr->table_list[i]);
+        while (*temp != NULL) {
+            node *h_ptr = *temp;
+            *temp = (*temp)->next;
+            free(h_ptr);
+        }
     }
 }

@@ -19,28 +19,18 @@ int main(void) {
     insert_data(&new_table_head, &new_table_tail, 391, "Dominic");
     insert_data(&new_table_head, &new_table_tail, 895, "Vanessa");
 
-    #if NR
-    int choice = 1;
-    int key;
-    char value[MAX_CHAR];
+    search_data(&new_table_head, 722);
+    search_data(&new_table_head, 723);
 
-    while (choice) {
-
-        printf("Enter key: ");
-        scanf("%d", &key);
-        getchar();
-        printf("Enter value: ");
-        scanf("%s", value);
-        getchar();
-
-        insert_data(&new_table_head, &new_table_tail, key, value);
-
-        printf("Enter choice: ");
-        scanf("%d", &choice);
-    }
-    #endif
-
+    printf("Hash table before removal.\n");
     print_hash_table(&new_table_head);
+
+    remove_data(&new_table_head, &new_table_tail, 548);
+
+    printf("Hash table after removal.\n");
+    print_hash_table(&new_table_head);
+
+    delete_table(&new_table_head);
 
     return 0;
 }
