@@ -2,7 +2,7 @@
 #define HASH_TABLE_H
 
 #define MAX_CHAR 256
-#define TABLE_SIZE 10
+#define TABLE_SIZE 7
 
 typedef struct node node;
 typedef struct hash_table hash_table;
@@ -15,16 +15,21 @@ struct node {
     node *next;
 };
 
+void func(char *a, char *b);
+bool_ list_is_empty(node *head);
 void insert_at_tail(node **head, node **tail, int num, char *name);
+// void find_element(node *head, int num);
+// void remove_element(node **head, node **tail, int num);
 
 struct hash_table {
-    node table_list[TABLE_SIZE];
+    node* table_list[TABLE_SIZE];
 };
 
 int hash_func(int key);
-void insert_data(int key, char *value);
-char* search_data(int key);
-void remove_data(int key);
-bool_ is_empty();
+void insert_data(hash_table *table_list_head, hash_table *table_list_tail, int key, char *value);
+// char* search_data(int key);
+// void remove_data(int key);
+// bool_ is_empty();
+void print_hash_table(hash_table *ptr);
 
 #endif // !HASH_TABLE_H
