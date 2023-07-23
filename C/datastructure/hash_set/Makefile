@@ -13,7 +13,7 @@ $(BIN): $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
 	rm -rf $(HDR) $(OBJ) $(BIN)
