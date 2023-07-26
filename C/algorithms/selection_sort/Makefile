@@ -1,8 +1,19 @@
-selection_sort: selection_sort.o
-	gcc selection_sort.o -o selection_sort
+BIN_DIR=./bin/
 
-selection_sort.o: selection_sort.c
-	gcc -c selection_sort.c -o selection_sort.o
+CC=gcc
+CFLAGS=-Wall -Werror -Wextra -Wpedantic -g
+
+SRC=$(wildcard *.c)
+OBJ=$(patsubst %.c, %.o, $(SRC))
+BIN=$(BIN_DIR)selection_sort
+
+all: $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -rf *.o
+	rm -rf $(OBJ) $(BIN)

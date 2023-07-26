@@ -1,8 +1,19 @@
-insertion_sort: insertion_sort.o
-	gcc insertion_sort.o -o insertion_sort
+BIN_DIR=./bin/
 
-insertion_sort.o: insertion_sort.c
-	gcc -c insertion_sort.c -o insertion_sort.o
+CC=gcc
+CFLAGS=-Wall -Werror -Wextra -Wpedantic -g
+
+SRC=$(wildcard *.c)
+OBJ=$(patsubst %.c, %.o, $(SRC))
+BIN=$(BIN_DIR)insertion_sort
+
+all: $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -rf *.o
+	rm -rf $(OBJ) $(BIN)

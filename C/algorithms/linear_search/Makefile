@@ -1,8 +1,19 @@
-linear_search: linear_search.o
-	gcc linear_search.o -o linear_search
+BIN_DIR=./bin/
 
-linear_search.o: linear_search.c
-	gcc -c linear_search.c -o linear_search.o
+CC=gcc
+CFLAGS=-Wall -Werror -Wextra -Wpedantic -g
+
+SRC=$(wildcard *.c)
+OBJ=$(patsubst %.c, %.o, $(SRC))
+BIN=$(BIN_DIR)linear_search
+
+all: $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -rf *.o
+	rm -rf $(OBJ) $(BIN)

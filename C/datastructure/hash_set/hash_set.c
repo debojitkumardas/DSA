@@ -102,7 +102,7 @@ void print_set(hash_set *hash_set_head) {
             temp = temp->next;
         }
     }
-    printf("]");
+    printf("]\n");
 }
 
 void delete_set(hash_set *hash_set_head) {

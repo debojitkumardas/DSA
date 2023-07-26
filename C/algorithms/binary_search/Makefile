@@ -1,8 +1,19 @@
-binary_search: binary_search.o
-	gcc binary_search.o -o binary_search
+BIN_DIR=./bin/
 
-binary_search.o: binary_search.c
-	gcc -c binary_search.c -o binary_search.o
+CC=gcc
+CFLAGS=-Wall -Werror -Wextra -Wpedantic -g
+
+SRC=$(wildcard *.c)
+OBJ=$(patsubst %.c, %.o, $(SRC))
+BIN=$(BIN_DIR)binary_search
+
+all: $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -rf *.o
+	rm -rf $(OBJ) $(BIN)

@@ -1,3 +1,5 @@
+BIN_DIR=./bin/
+
 CC=gcc
 DEPFLAGS=-MP -MD
 CFLAGS=-Wall -Werror -Wextra -g -I . $(DEPFLAGS)
@@ -5,7 +7,7 @@ CFLAGS=-Wall -Werror -Wextra -g -I . $(DEPFLAGS)
 SRC=$(wildcard *.c)
 OBJ=$(patsubst %.c, %.o, $(SRC))
 HDR=$(patsubst %.c, %.d, $(SRC))
-BIN=main
+BIN=$(BIN_DIR)main
 
 all: $(BIN)
 
@@ -16,4 +18,4 @@ $(BIN): $(OBJ)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm $(OBJ) $(HDR) $(BIN)
+	rm -rf $(OBJ) $(HDR) $(BIN)

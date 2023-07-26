@@ -7,6 +7,12 @@
 # ignore all files in any directory named .cache
 .cache/
 
+# ignore all files in bin dir
+bin/
+
+#ignore compile_commands.json files
+compile_commands.json
+
 # but do track lib.out, even though you're ignoring .out files above
 # !lib.o
 
