@@ -1,3 +1,5 @@
+BIN_DIR=./bin/
+
 CC=gcc
 DEPFLAGS=-MD - MP
 CFLAGS=-Wall -Werror -Wextra -g
@@ -5,7 +7,7 @@ CFLAGS=-Wall -Werror -Wextra -g
 SRC=$(wildcard *.c)
 HDR=$(patsubst %.c, %.d, $(SRC))
 OBJ=$(patsubst %.c, %.o, $(SRC))
-BIN=main
+BIN=$(BIN_DIR)main
 
 all: $(BIN)
 

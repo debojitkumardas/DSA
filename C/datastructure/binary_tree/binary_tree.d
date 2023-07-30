@@ -4,8 +4,8 @@ binary_tree.o: binary_tree.c /usr/include/stdc-predef.h binary_tree.h \
  /usr/include/bits/wordsize.h /usr/include/bits/timesize.h \
  /usr/include/sys/cdefs.h /usr/include/bits/long-double.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
- /usr/lib64/gcc/x86_64-suse-linux/13/include/stddef.h \
- /usr/lib64/gcc/x86_64-suse-linux/13/include/stdarg.h \
+ /usr/lib/gcc/x86_64-redhat-linux/13/include/stddef.h \
+ /usr/lib/gcc/x86_64-redhat-linux/13/include/stdarg.h \
  /usr/include/bits/types.h /usr/include/bits/typesizes.h \
  /usr/include/bits/time64.h /usr/include/bits/types/__fpos_t.h \
  /usr/include/bits/types/__mbstate_t.h \
@@ -41,8 +41,8 @@ binary_tree.h:
 /usr/include/bits/long-double.h:
 /usr/include/gnu/stubs.h:
 /usr/include/gnu/stubs-64.h:
-/usr/lib64/gcc/x86_64-suse-linux/13/include/stddef.h:
-/usr/lib64/gcc/x86_64-suse-linux/13/include/stdarg.h:
+/usr/lib/gcc/x86_64-redhat-linux/13/include/stddef.h:
+/usr/lib/gcc/x86_64-redhat-linux/13/include/stdarg.h:
 /usr/include/bits/types.h:
 /usr/include/bits/typesizes.h:
 /usr/include/bits/time64.h:
