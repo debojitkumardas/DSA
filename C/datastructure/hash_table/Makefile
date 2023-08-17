@@ -2,14 +2,16 @@ BIN_DIR=./bin/
 
 CC=gcc
 DEPFLAGS=-MD - MP
-CFLAGS=-Wall -Werror -Wextra -g
+CFLAGS=-Wall -Werror -Wextra -pedantic
 
 SRC=$(wildcard *.c)
-HDR=$(patsubst %.c, %.d, $(SRC))
 OBJ=$(patsubst %.c, %.o, $(SRC))
 BIN=$(BIN_DIR)main
 
 all: $(BIN)
+
+debug: CFLAGS += -DDEBUG -g
+debug: $(BIN)
 
 $(BIN): $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^
@@ -18,4 +20,4 @@ $(BIN): $(OBJ)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -rf $(HDR) $(OBJ) $(BIN)
+	rm -rf $(OBJ) $(BIN)

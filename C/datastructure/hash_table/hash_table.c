@@ -2,6 +2,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int hash_func(int key) {
+    return key % TABLE_SIZE;
+}
+
+int contains_elem(hash_table *head, char *name) {
+    //
+}
+
+/*
 void func(char *a, char *b) {
 
     int i = 0;
@@ -138,3 +147,4 @@ void delete_table(hash_table *ptr) {
         }
     }
 }
+*/
