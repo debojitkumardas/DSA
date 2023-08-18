@@ -2,21 +2,30 @@
 #include "hdr/queue_ds.h"
 #include <stdio.h>
 
-int Solve(int start, int end) {
+void BreadthFirstSearch(Graph* graph, int start) {
     Node* head = NULL;
     Node* tail = NULL;
+    int current;
 
     Enqueue(&head, &tail, start);
 
-    //
-}
+    while (head != NULL) {
+        current = head->value;
+        Dequeue(&head, &tail);
 
-void ReconstructPath(int start, int end, int prev);
+        if (graph->visited[current] == 1)
+            continue;
+        graph->visited[current] = 1;
+        printf("%d\n", current);
 
-void BreadthFirstSearch(Graph* graph, int start, int end) {
-    int prev = Solve(start, end);
+        Node* neighbour = graph->adj_list[current];
+        while (neighbour != NULL) {
+            Enqueue(&head, &tail, neighbour->value);
+            neighbour = neighbour->next;
+        }
+    }
 
-    ReconstructPath(start, end, prev);
+    DeleteQueue(&head, &tail);
 }
 
 
@@ -31,6 +40,9 @@ int main(void) {
     AddEdge(&graph, 3, 5);
 
     PrintGraph(graph);
+
+    printf("BFS\n");
+    BreadthFirstSearch(graph, 0);
 
     DeleteGraph(&graph);
 

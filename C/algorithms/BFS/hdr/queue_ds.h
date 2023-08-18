@@ -12,6 +12,6 @@ Node* CreateNode(int value);
 void Enqueue(Node** head, Node** tail, int value);
 void Dequeue(Node** head, Node** tail);
 void PrintQueue(Node* head);
-void DeleteQueue(Node** head);
+void DeleteQueue(Node** head, Node** tail);
 
 #endif // !QUEUE_DS

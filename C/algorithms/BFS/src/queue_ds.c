@@ -32,7 +32,6 @@ void Dequeue(Node **head, Node **tail) {
 
     // if queue is empty
     if (*head == NULL) {
-        free(*tail);
         *tail = NULL;
     }
 }
@@ -44,10 +43,14 @@ void PrintQueue(Node *head) {
     }
 }
 
-void DeleteQueue(Node **head) {
+void DeleteQueue(Node **head, Node** tail) {
     while (*head != NULL) {
         Node* temp = *head;
         *head = (*head)->next;
         free(temp);
+    }
+
+    if (*head == NULL) {
+        *tail = NULL;
     }
 }
