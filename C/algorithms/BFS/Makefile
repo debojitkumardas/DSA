@@ -1,3 +1,5 @@
+# valgrind --enable-debuginfod=no --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=all --track-origins=yes -s --verbose --log-s --verbose --log-file=valgrind_out.txt ./bin/main
+#
 SRC_DIR=./src/
 BIN_DIR=./bin/
 

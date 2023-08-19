@@ -7,6 +7,7 @@ typedef struct Graph Graph;
 
 struct Graph {
     int num_vertices;
+    /** visited is initialized to 0 */
     int* visited;
     Node** adj_list;
 };
