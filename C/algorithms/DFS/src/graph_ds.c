@@ -37,6 +37,8 @@ void PrintGraph(Graph* graph) {
     for (int v = 0; v < vertices; ++v) {
         Node* temp = graph->adj_list[v];
         printf("%d: [", v);
+        if (temp == NULL)
+            printf("  ");
         while (temp != NULL) {
             printf("%d, ", temp->value);
             temp = temp->next;
