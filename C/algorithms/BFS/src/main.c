@@ -61,10 +61,12 @@ int* Solve(Graph* graph, int start) {
                 Enqueue(&head, &tail, neighbour->value);
                 graph->visited[neighbour->value] = 1;
                 prev[neighbour->value] = current;
+                printf("%d - ", current);
             }
             neighbour = neighbour->next;
         }
     }
+    printf("\n");
 
     DeleteQueue(&head, &tail);
 
@@ -153,26 +155,21 @@ int main(void) {
     */
 
     int start = 0;
-    int end = 3;
+    int end = 1;
 
     int* path = ShortestPath(graph, start, end);
 
     // The following is a bit dodgy code need for make it better
     if (path != NULL) {
-        while (*path != end) {
-            printf("%d - ", *path);
-            path++;
+        int i = 0;
+        while (path[i] != end) {
+            printf("%d - ", path[i]);
+            i++;
         }
-        printf("%d\n", *path);
+        printf("%d\n", path[i]);
     }
     else {
         printf("Path doesn't exist!!\n");
-    }
-
-    // this is the dodgy part
-    // as to free the memory it has to point to the original location
-    while (*path != start) {
-        path--;
     }
 
     free(path);
