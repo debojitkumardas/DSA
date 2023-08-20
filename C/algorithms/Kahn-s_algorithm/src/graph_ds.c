@@ -40,12 +40,14 @@ void PrintGraph(Graph *graph) {
             printf("%d, ", temp->value);
             temp = temp->next;
         }
-        printf("]\b\b\n");
+        printf("\b\b]\n");
     }
 }
 
 void DeleteGraph(Graph **graph) {
     int vertices = (*graph)->num_vertices;
+
+    free((*graph)->visited);
 
     for (int v = 0; v < vertices; ++v) {
         Node* temp = (*graph)->adj_list[v];
