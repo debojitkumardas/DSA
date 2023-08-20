@@ -1,4 +1,4 @@
-#include "../hdr/stack_ds.h"
+#include "hdr/stack_ds.h"
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -20,7 +20,8 @@ int DFSIter(Graph* graph, int start, int* order, int index) {
         graph->visited[current] = 1;
 
         order[index] = current;
-        --index;
+        // --index;
+        ++index;
 
         Node* neighbour = graph->adj_list[current];
         while (neighbour != NULL) {
@@ -36,7 +37,8 @@ int DFSIter(Graph* graph, int start, int* order, int index) {
 
 int* TopologicalSort(Graph* graph) {
     int vertices = graph->num_vertices;
-    int index = vertices - 1;
+    // int index = vertices - 1;
+    int index = 0;
     int* order = malloc(vertices * sizeof(int));
 
     for (int i = 0; i < vertices; ++i) {
@@ -51,6 +53,19 @@ int* TopologicalSort(Graph* graph) {
 int main(void) {
     int vertices = 13;
     Graph* graph = CreateGraph(vertices);
+
+    /*
+     * Not a DAG
+    AddEdge(&graph, 0, 2);
+    AddEdge(&graph, 0, 3);
+    AddEdge(&graph, 1, 2);
+    AddEdge(&graph, 2, 3);
+    AddEdge(&graph, 3, 5);
+    AddEdge(&graph, 4, 1);
+    AddEdge(&graph, 4, 2);
+    AddEdge(&graph, 4, 5);
+    AddEdge(&graph, 5, 2);
+    */
 
     AddEdge(&graph, CTOI('a'), CTOI('d'));
     AddEdge(&graph, CTOI('b'), CTOI('d'));
@@ -78,6 +93,7 @@ int main(void) {
     if (order != NULL) {
         for (int v = 0; v < vertices; ++v)
             printf("%c ", ITOC(order[v]));
+            // printf("%d ", order[v]);
         printf("\b\b\n");
     }
 

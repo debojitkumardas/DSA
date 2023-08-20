@@ -1,5 +1,5 @@
-#include "../hdr/graph_ds.h"
-#include "../hdr/2D_list_ds.h"
+#include "hdr/graph_ds.h"
+#include "hdr/2D_list_ds.h"
 #include <stdio.h>
 #include <stdlib.h>
 
