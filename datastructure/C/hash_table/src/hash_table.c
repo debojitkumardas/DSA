@@ -1,4 +1,4 @@
-#include "hash_table.h"
+#include "../hdr/hash_table.h"
 #include <stdio.h>
 #include <stdlib.h>
 
