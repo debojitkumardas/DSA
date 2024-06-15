@@ -1,6 +1,8 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
+#include <cstddef>
+
 /**
  *
  */
@@ -55,19 +57,19 @@ public:
             Node<T>* temp_h = m_head;
             Node<T>* temp_t = m_tail;
             T retval = temp_t->m_data;
-            while (temp_h->m_next != m_tail) {
+            while (temp_h->m_next != m_tail && temp_h->m_next != nullptr) {
                 temp_h = temp_h->m_next;
             }
             m_tail = temp_h;
             delete temp_t;
             temp_t = nullptr;
 
-            return retval;
-        }
+            if (m_tail == nullptr) {
+                delete m_head;
+                m_head = nullptr;
+            }
 
-        if (m_tail == nullptr) {
-            delete m_head;
-            m_head = nullptr;
+            return retval;
         }
 
         return {};
@@ -82,11 +84,20 @@ public:
     }
 
     T Peek() {
-        if (m_head) {
-            return m_head->m_data;
+        if (m_tail) {
+            return m_tail->m_data;
         }
 
         return {};
+    }
+
+    size_t GetSize() {
+        Node<T>* temp = m_head;
+        size_t len = 0;
+        while (temp) {
+            ++len;
+            temp = temp->m_next;
+        }
     }
 
 private:
