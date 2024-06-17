@@ -13,6 +13,9 @@ bin/
 #ignore compile_commands.json files
 compile_commands.json
 
+# ignore all files in the docs dir
+docs/
+
 # but do track lib.out, even though you're ignoring .out files above
 # !lib.o
 
