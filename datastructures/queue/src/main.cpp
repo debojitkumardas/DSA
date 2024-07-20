@@ -22,7 +22,8 @@ int main() {
     while (!queue.IsEmpty()) {
         std::cout << "Size of Queue: " << queue.GetSize() << '\n';
         std::cout << "Peek: " << queue.Peek() << '\n';
-        std::cout << "Dequeue: " << queue.Dequeue() << '\n';
+        std::cout << "Dequeue" << '\n';
+        queue.Dequeue();
     }
     std::cout << "Size of Queue: " << queue.GetSize() << '\n';
 }

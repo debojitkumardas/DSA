@@ -22,7 +22,8 @@ int main() {
     while (!stack.IsEmpty()) {
         std::cout << "Size of stack: " << stack.GetSize() << '\n';
         std::cout << "Peek: " << stack.Peek() << '\n';
-        std::cout << "Pop: " << stack.Pop() << '\n';
+        std::cout << "Pop" << '\n';
+        stack.Pop();
     }
     std::cout << "Size of stack: " << stack.GetSize() << '\n';
 

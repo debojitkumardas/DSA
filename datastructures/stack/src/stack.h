@@ -37,7 +37,7 @@ public:
      * Initialises node pointer to null
      */
     Stack<T>()
-        : m_head(nullptr) {}
+        : m_head(nullptr), m_len(0) {}
 
     /**
      * @brief Destructor for the stack class
@@ -51,6 +51,12 @@ public:
             delete temp;
             temp = nullptr;
         }
+
+        if (m_head) {
+            delete m_head;
+            m_head = nullptr;
+        }
+        m_len = 0;
     }
 
     /**
@@ -63,6 +69,7 @@ public:
         if (new_node) {
             new_node->data = data;
             new_node->next = nullptr;
+            ++m_len;
         }
 
         if (!IsEmpty()) {
@@ -73,20 +80,15 @@ public:
 
     /**
      * @brief Removes data from top of the stack
-     * @return Returns the data that's being removed from the stack
      */
-    T Pop() {
+    void Pop() {
         if (!IsEmpty()) {
             Node<T>* temp = m_head;
-            T retval = temp->data;
             m_head = m_head->next;
             delete temp;
             temp = nullptr;
-
-            return retval;
+            --m_len;
         }
-
-        return {};
     }
 
     /**
@@ -114,22 +116,16 @@ public:
     }
 
     /**
-     * @brief Get the number of elements in the stack
+     * @brief The number of elements in the stack
      * @return Returns the number of the elements in the stack
      */
     size_t GetSize() {
-        Node<T>* temp = m_head;
-        size_t len = 0;
-        while (temp) {
-            ++len;
-            temp = temp->next;
-        }
-
-        return len;
+        return m_len;
     }
 
 private:
     Node<T>* m_head;    /**< Node to hold data and pointer to next node for stack */
+    size_t m_len;       /**< To count the number of elements in stack */
 };
 
 #endif // !STACK_H

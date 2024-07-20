@@ -37,7 +37,7 @@ public:
      * Initialises node pointer to null
      */
     Queue<T>()
-        : m_head(nullptr), m_tail(nullptr) {}
+        : m_head(nullptr), m_tail(nullptr), m_len(0) {}
 
     /**
      * @brief Destructor for the queue class
@@ -46,15 +46,15 @@ public:
      */
     ~Queue<T>() {
         while (!IsEmpty()) {
-            Node<T>* temp = m_head;
+            Node<T>* temp_h = m_head;
             m_head = m_head->next;
-            delete temp;
-            temp = nullptr;
+            delete temp_h;
+            temp_h = nullptr;
         }
         if (m_head == nullptr) {
-            delete m_tail;
             m_tail = nullptr;
         }
+        m_len = 0;
     }
 
     /**
@@ -67,43 +67,32 @@ public:
         if (new_node) {
             new_node->data = data;
             new_node->next = nullptr;
+            ++m_len;
         }
 
         if (IsEmpty()) {
             m_head = new_node;
-        }
-
-        if (m_tail) {
+        } else {
             m_tail->next = new_node;
         }
+
         m_tail = new_node;
     }
 
     /**
-     * @brief Removes data from rear of the queue
-     * @return Returns the data that's being removed from the queue
+     * @brief Removes data from front of the queue
      */
-    T Dequeue() {
+    void Dequeue() {
         if (!IsEmpty()) {
             Node<T>* temp_h = m_head;
-            Node<T>* temp_t = m_tail;
-            T retval = temp_t->data;
-            while (temp_h->next != m_tail && temp_h->next != nullptr) {
-                temp_h = temp_h->next;
-            }
-            m_tail = temp_h;
-            delete temp_t;
-            temp_t = nullptr;
-
-            if (m_tail == nullptr) {
-                delete m_head;
-                m_head = nullptr;
-            }
-
-            return retval;
+            m_head = m_head->next;
+            delete temp_h;
+            temp_h = nullptr;
+            --m_len;
         }
-
-        return {};
+        if (IsEmpty()) {
+            m_tail = nullptr;
+        }
     }
 
     /**
@@ -123,8 +112,8 @@ public:
      * @return Returns the front element of the stack
      */
     T Peek() {
-        if (m_tail) {
-            return m_tail->data;
+        if (!IsEmpty()) {
+            return m_head->data;
         }
 
         return {};
@@ -135,19 +124,13 @@ public:
      * @return Returns the number of the elements in the queue
      */
     size_t GetSize() {
-        Node<T>* temp = m_head;
-        size_t len = 0;
-        while (temp) {
-            ++len;
-            temp = temp->next;
-        }
-
-        return len;
+        return m_len;
     }
 
 private:
     Node<T>* m_head;    /**< Node to hold data and pointer to the front of the queue */
     Node<T>* m_tail;    /**< Node to hold data and pointer to the tail of the queue */
+    size_t m_len;       /**< To count the number of elements in queue */
 };
 
 #endif // !QUEUE_H
